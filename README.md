@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# City Explorer Lab Project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Description
+
+Build a React application that uses the Axios library to make user-initiated requests for data from a third-party API.
+
+## Resources
+
+[Axios on NPM](https://www.npmjs.com/package/axios)  
+Mapping and Geolocation [APIs at LocationIQ](https://my.locationiq.com/)  
+
+## Documented Dataflow
+
+See './design/data-flow-and-functions.pdf'.  
+![Data Flow and Functions](./design/data-flow-and-functions.pdf)  
 
 ## Available Scripts
 
