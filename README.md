@@ -2,19 +2,35 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Description
+**Author**: Jon Rumsey
+**Version**: 1.0.0
+
+## Overview
 
 Build a React application that uses the Axios library to make user-initiated requests for data from a third-party API.
+
+## Getting Started
+
+1. Clone this repository.  
+2. ...Do a little dance, drink a little water...
+
+## Architecture
+
+See './design/data-flow-and-functions.pdf'.  
+![Data Flow and Functions](./design/data-flow-and-functions.pdf)  
+
+## Change Log
+
+18-Apr-22 1536 PDT - Initial framing and setup, not deployed.
+
+## Credit and Collaborations
+
+Andrew Schiller - [GitHub](https://github.com/schillerandrew)  
 
 ## Resources
 
 [Axios on NPM](https://www.npmjs.com/package/axios)  
 Mapping and Geolocation [APIs at LocationIQ](https://my.locationiq.com/)  
-
-## Documented Dataflow
-
-See './design/data-flow-and-functions.pdf'.  
-![Data Flow and Functions](./design/data-flow-and-functions.pdf)  
 
 ## Available Scripts
 
