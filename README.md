@@ -12,7 +12,10 @@ Build a React application that uses the Axios library to make user-initiated req
 ## Getting Started
 
 1. Clone this repository.  
-2. ...Do a little dance, drink a little water...
+1. NPM version should be 8 or greater.  
+1. node version 14 `nvm user 14`  
+1. Run `npm -i` to download dependencies.  
+1. ...Do a little dance, drink a little water...  
 
 ## Architecture
 
