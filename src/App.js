@@ -80,7 +80,6 @@ class App extends React.Component {
     let cityDataItems = null;
 
     if (this.state.cityData !== null) {
-      console.log(`this.state.display_name: ${this.state.display_name}`);
       cityDataItems = <div className="cityData"><p>City: {this.state.display_name}</p><p>Lat: {this.state.lat}, Lon: {this.state.lon}</p></div>
     }
 
@@ -92,7 +91,7 @@ class App extends React.Component {
         <Row>
           <Col>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group className="mb-3" controlId="formCityState">
+              <Form.Group className="mb-3">
                 <Form.Label>Enter a City, State to search for, below.</Form.Label>
                 <Form.Control onChange={this.handleCityInput} id="cityInputText" type="text" placeholder="Seattle, WA" />
               </Form.Group>
