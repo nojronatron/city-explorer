@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Button, Container, Row, Col, Card} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class ErrorPage extends React.Component {
