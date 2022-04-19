@@ -3,12 +3,6 @@ import {Card} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class ErrorPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
 
   render() {
     return (

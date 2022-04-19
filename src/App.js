@@ -103,7 +103,7 @@ class App extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className='mapCardCol'>
             {this.state.map_url && <MapCard map_url={this.state.map_url} display_name={this.state.display_name} /> }
           </Col>
         </Row>
