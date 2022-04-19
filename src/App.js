@@ -10,8 +10,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityData: {},
-      city: ''
+      city: '',
+      cityData: null,
+      display_name: '',
+      lat: '',
+      lon: ''
     }
   }
 
@@ -29,14 +32,25 @@ class App extends React.Component {
     let api_key = `${process.env.REACT_APP_LOCATIONIQ_API_KEY}`;
     let base_url = `https://us1.locationiq.com/v1/search.php`;
     let url = `${base_url}?key=${api_key}&q=${qry}&format=${format}`;
-    let cityData = await axios.get(url);
-    console.log(cityData.data[0]);
+    let queryResponse = await axios.get(url);
+    console.log(queryResponse.data[0]);
     this.setState({
-      cityData: cityData.data[0]
+      cityData: queryResponse.data[0],
+      display_name: queryResponse.data[0].display_name,
+      lat: queryResponse.data[0].lat,
+      lon: queryResponse.data[0].lon,
     })
   }
 
   render() {
+
+    let cityDataItems = null;
+
+    if (this.state.cityData !== null) {
+      console.log(cityDataItems);
+      cityDataItems = <p>City: {this.state.display_name}, Lat: {this.state.lat}, Lon: {this.state.lon}</p>
+      console.log(cityDataItems);
+    }
 
     return (
       <>
@@ -47,8 +61,10 @@ class App extends React.Component {
           </Form.Group>
           <Button className="btn" type="submit">Explore!</Button>
         </Form>
+        <div>{cityDataItems}</div>
       </>
     )
   }
 }
+
 export default App;
