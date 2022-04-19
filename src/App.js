@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import {Form, Button, Container, Row, Col} from 'react-bootstrap';
 import MapCard from './MapCard.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: '',
-      cityData: null,
+      // city: '',
+      // cityData: null,
       display_name: '',
       lat: '',
       lon: '',
@@ -31,17 +31,21 @@ class App extends React.Component {
     let url = `${base_url}?key=${api_key}&q=${qry}&format=json`;
     let queryResponse = await axios.get(url);
     
-    this.setState({
-      test: true,
-    });
+    // this.setState({
+    //   test: true,
+    // });
 
     let center = `${queryResponse.data[0].lat},${queryResponse.data[0].lon}`;
-    let zoom = 10;
-    
+    let zoom = 10;    
     base_url = `https://maps.locationiq.com/v3/staticmap`;
     let mapurl = `${base_url}?key=${api_key}&center=${center}&zoom=${zoom}&format=jpg`;
-
+    let tempName = queryResponse.data[0].display_name;
+    let tempLat = queryResponse.data[0].lat;
+    let tempLon = queryResponse.data[0].lon;
     this.setState({
+      display_name: tempName,
+      lat: tempLat,
+      lon: tempLon,
       map_url: mapurl,
     })
   }
@@ -56,21 +60,35 @@ class App extends React.Component {
     let cityDataItems = null;
 
     if (this.state.cityData !== null) {
-      cityDataItems = <p>City: {this.state.display_name}, Lat: {this.state.lat}, Lon: {this.state.lon}</p>
+      console.log(`this.state.display_name: ${this.state.display_name}`);
+      cityDataItems = <div><p>City: {this.state.display_name}</p><p>Lat: {this.state.lat}, Lon: {this.state.lon}</p></div>
     }
 
     return (
-      <div>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group className="mb-3" controlId="formCityState">
-            <Form.Label>Enter a City, State to search for</Form.Label>
-            <Form.Control onChange={this.handleCityInput} type="text" placeholder="Seattle, WA" />
-          </Form.Group>
-          <Button className="btn" type="submit">Explore!</Button>
-        </Form>
+      <Container fluid>
+        <Row>
+          <Col>Welcome to City Explorer!</Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group className="mb-3" controlId="formCityState">
+                <Form.Label>Enter a City, State to search for</Form.Label>
+                <Form.Control onChange={this.handleCityInput} type="text" placeholder="Seattle, WA" />
+              </Form.Group>
+            <Button variant="primary" className="btn" type="submit">Explore!</Button>
+            </Form>
+          </Col>
+          <Col>
         <div>{cityDataItems}</div>
-        {this.state.map_url && <MapCard map_url={this.state.map_url} display_name={this.state.display_name} /> }
-      </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {this.state.map_url && <MapCard map_url={this.state.map_url} display_name={this.state.display_name} /> }
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }
