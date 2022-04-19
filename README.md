@@ -30,7 +30,7 @@ See './design/data-flow-and-functions.pdf'.
 
 Andrew Schiller - [GitHub](https://github.com/schillerandrew)  
 David Hecker, Lab TA and fellow student.  
-Doo
+
 ## Resources
 
 [Axios on NPM](https://www.npmjs.com/package/axios)  
