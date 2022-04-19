@@ -8,7 +8,7 @@ class MapCard extends React.Component {
       <Card>
         <Card.Body>
           <Card.Title>{this.props.display_name}</Card.Title>
-          <Card.Img src={this.props.map_url} alt={this.props.display_name} />
+          <Card.Img src={this.props.map_url} alt={this.props.display_name} fluid="true" variant="bottom" />
         </Card.Body>
       </Card>
     )
