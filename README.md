@@ -29,6 +29,7 @@ See './design/data-flow-and-functions.pdf'.
 ## Credit and Collaborations
 
 Andrew Schiller - [GitHub](https://github.com/schillerandrew)  
+David Hecker, Lab TA and fellow student.  
 
 ## Resources
 
