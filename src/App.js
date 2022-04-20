@@ -4,19 +4,21 @@ import axios from 'axios';
 import {Form, Button, Container, Row, Col, Modal} from 'react-bootstrap';
 import MapCard from './MapCard.js';
 import ErrorCard from './ErrorCard.js';
+import Weather from './Weather.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,
       errorTitle: 'default_errorTitle',
       errorText: 'default_errorText',
       display_name: '',
       lat: '',
       lon: '',
-      map_url: ''
+      map_url: '',
+      showModal: false,
+      wxData: [],
     }
   }
 
@@ -32,6 +34,7 @@ class App extends React.Component {
     let base_url = `https://us1.locationiq.com/v1/search.php`;
     let url = `${base_url}?key=${api_key}&q=${qry}&format=json`;
     try {
+      //  get city data
       let queryResponse = await axios.get(url);
       let center = `${queryResponse.data[0].lat},${queryResponse.data[0].lon}`;
       let zoom = 10;    
@@ -40,17 +43,23 @@ class App extends React.Component {
       let tempName = queryResponse.data[0].display_name;
       let tempLat = queryResponse.data[0].lat;
       let tempLon = queryResponse.data[0].lon;
+
+      //  get weather info
+      let wxUrl = `localhost:3000/weather?city=${this.state.city}`;
+      let cityWeather = await axios.get(wxUrl);
+
       this.setState({
         display_name: tempName,
         lat: tempLat,
         lon: tempLon,
         map_url: mapurl,
+        wxData: cityWeather,
       })
     }
     catch (err) {
       this.setState({
         errorTitle: 'Request failed',
-        errorText: err.response.status,
+        // errorText: err.response.status,
         display_name: '',
         lat: '',
         lon: '',
@@ -106,6 +115,14 @@ class App extends React.Component {
           <Col>
             {this.state.map_url && <MapCard map_url={this.state.map_url} display_name={this.state.display_name} /> }
           </Col>
+        </Row>
+        <Row>
+          
+          <Weather 
+            wxDate={this.state.wxData.date} 
+            wxDescription={this.state.wxData.description} 
+          />
+          
         </Row>
         <Modal
           show={this.state.showModal}
