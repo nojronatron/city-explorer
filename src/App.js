@@ -18,7 +18,7 @@ class App extends React.Component {
       lon: '',
       map_url: '',
       showModal: false,
-      wxData: [],
+      wxData: null,
     }
   }
 
@@ -37,7 +37,7 @@ class App extends React.Component {
       //  get city data
       let queryResponse = await axios.get(url);
       let center = `${queryResponse.data[0].lat},${queryResponse.data[0].lon}`;
-      let zoom = 10;    
+      let zoom = 12;    
       base_url = `https://maps.locationiq.com/v3/staticmap`;
       let mapurl = `${base_url}?key=${api_key}&center=${center}&zoom=${zoom}&format=jpg`;
       let tempName = queryResponse.data[0].display_name;
@@ -57,7 +57,7 @@ class App extends React.Component {
         lat: tempLat,
         lon: tempLon,
         map_url: mapurl,
-        wxData: cityWeather,
+        wxData: cityWeather.data,
       })
     }
     catch (err) {
@@ -89,7 +89,7 @@ class App extends React.Component {
   }
 
   render() {
-
+    //  leave this console log here to verify state at every render
     console.log(`current thisState:`, this.state );
 
     let cityDataItems = null;
@@ -98,12 +98,13 @@ class App extends React.Component {
       cityDataItems = <div className="cityData"><p>City: {this.state.display_name}</p><p>Lat: {this.state.lat}, Lon: {this.state.lon}</p></div>
     }
 
+    
     return (
       <Container className="mainBody" fluid>
-        <Row>
+        <Row className="row-1">
           <Col className="welcome"><h1>Welcome to City Explorer!</h1></Col>
         </Row>
-        <Row>
+        <Row className="row-2">
           <Col>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group className="mb-3">
@@ -117,19 +118,15 @@ class App extends React.Component {
             {cityDataItems && <div>{cityDataItems}</div>}
           </Col>
         </Row>
-        <Row>
+        <Row className="row-3">
           <Col>
             {this.state.map_url && <MapCard map_url={this.state.map_url} display_name={this.state.display_name} /> }
           </Col>
-        </Row>
-        <Row>
+          <Col>
           
-          { this.state.wxData.date &&
-          <Weather 
-            wxDate={this.state.wxData.date} 
-            wxDescription={this.state.wxData.description} 
-          /> }
+          {this.state.wxData && <Weather wxData={this.state.wxData} />}
           
+          </Col>
         </Row>
         <Modal
           show={this.state.showModal}
