@@ -63,13 +63,11 @@ class App extends React.Component {
     let tempLon = queryResponse.data[0].lon;
 
     //  get weather info
-    console.log(`get weather arg this.state.city: ${this.state.city}`);
     let wxUrl = `http://localhost:3001/weather?city=${this.state.city}`;
-    console.log(`sending ${wxUrl} to the server!`);
 
     try {
       cityWeather = await axios.get(wxUrl);
-      console.log(`cityWeather (before setState): ${cityWeather.data[0].date}`);
+      // console.log(`cityWeather (before setState): ${cityWeather.data[0].date}`);
     }
     catch (err) {
       this.setState({
@@ -122,28 +120,41 @@ class App extends React.Component {
 
   render() {
     //  leave this console log here to verify state at every render
-    console.log(`current thisState:`, this.state);
+    // console.log(`current thisState:`, this.state);
 
     let cityDataItems = null;
 
     if (this.state.cityData !== null) {
-      cityDataItems = <div className="cityData"><p>City: {this.state.display_name}</p><p>Lat: {this.state.lat}, Lon: {this.state.lon}</p></div>
+      cityDataItems = <div className="cityData">
+        <p>City: {this.state.display_name}</p>
+        <p>Lat: {this.state.lat}, Lon: {this.state.lon}</p>
+        </div>
     }
-
 
     return (
       <Container className="mainBody" fluid>
         <Row className="row-1">
-          <Col className="welcome"><h1>Welcome to City Explorer!</h1></Col>
+          <Col className="welcome">
+            <h1>Welcome to City Explorer!</h1>
+            </Col>
         </Row>
         <Row className="row-2">
           <Col>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group className="mb-3">
                 <Form.Label>Enter a City, State to search for, below.</Form.Label>
-                <Form.Control onChange={this.handleCityInput} id="cityInputText" type="text" placeholder="Seattle, WA" />
+                <Form.Control 
+                  onChange={this.handleCityInput} 
+                  id="cityInputText" 
+                  type="text" 
+                  placeholder="Seattle, WA" 
+                />
               </Form.Group>
-              <Button variant="primary" className="btn" type="submit">Explore!</Button>
+              <Button 
+                variant="primary" 
+                className="btn" 
+                type="submit">Explore!
+              </Button>
             </Form>
           </Col>
           <Col>
@@ -155,9 +166,7 @@ class App extends React.Component {
             {this.state.map_url && <MapCard map_url={this.state.map_url} display_name={this.state.display_name} />}
           </Col>
           <Col>
-
             {this.state.wxData && <Weather wxData={this.state.wxData} />}
-
           </Col>
         </Row>
         <Modal
@@ -169,7 +178,10 @@ class App extends React.Component {
             <Modal.Title>An Error Has Occurred!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ErrorCard title={this.state.errorTitle} errorText={this.state.errorText} />
+            <ErrorCard 
+              title={this.state.errorTitle} 
+              errorText={this.state.errorText} 
+            />
           </Modal.Body>
         </Modal>
       </Container>

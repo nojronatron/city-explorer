@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class Weather extends React.Component {
 
   render() {
-    console.log('Weather component render()ing: ', this.props.wxData);
+    // console.log('Weather component render()ing: ', this.props.wxData);
     
     return (
         <Card>

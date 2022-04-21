@@ -24,10 +24,14 @@ See './design/data-flow-and-functions.pdf'.
 
 ## Change Log
 
-18-Apr-22 1536 PDT - Initial framing and setup, not deployed.
+18-Apr-22 1536 PDT - Initial framing and setup, not deployed.  
+19-Apr-22 nnnn PDT - Built-up React front-end and Express back-end.  
+20-Apr-22 2100 PDT - Completed building features per Trello Board requirements.  
 
 ## Credit and Collaborations
 
+Scott Evans - [GitHub](https://github.com/mScottEvans)  
+Kyle Honaker - [GitHub](https://github.com/ikyle53)  
 Andrew Schiller - [GitHub](https://github.com/schillerandrew)  
 David Hecker, Lab TA and fellow student.  
 
@@ -35,6 +39,7 @@ David Hecker, Lab TA and fellow student.
 
 [Axios on NPM](https://www.npmjs.com/package/axios)  
 Mapping and Geolocation [APIs at LocationIQ](https://my.locationiq.com/)  
+Express [Error Handling](https://expressjs.com/en/guide/error-handling.html)  
 
 ## Available Scripts
 
