@@ -67,7 +67,7 @@ class App extends React.Component {
 
     try {
       cityWeather = await axios.get(wxUrl);
-      // console.log(`cityWeather (before setState): ${cityWeather.data[0].date}`);
+      console.log(`cityWeather (before setState): ${cityWeather.data[0].date}`);
     }
     catch (err) {
       this.setState({
