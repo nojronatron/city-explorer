@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 class Weather extends React.Component {
 
   render() {
+    console.log(this.props.weather);
     let weatherCards = this.props.weather.map((wx, idx) => {
       return (
         <Card id={idx}>

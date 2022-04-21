@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       errorTitle: 'default_errorTitle',
-      errorText: 'default_errorText',
+      errorText: '',
       display_name: '',
       lat: '',
       lon: '',
@@ -45,8 +45,12 @@ class App extends React.Component {
       let tempLon = queryResponse.data[0].lon;
 
       //  get weather info
-      let wxUrl = `localhost:3000/weather?city=${this.state.city}`;
+      console.log(`get weather arg this.state.city: ${this.state.city}`);
+      let wxUrl = `http://localhost:3001/weather?city=${this.state.city}`;
+      console.log(`sending ${wxUrl} to the server!`);
       let cityWeather = await axios.get(wxUrl);
+      
+      console.log(`cityWeather (before setState): ${cityWeather.data[0].date}`);
 
       this.setState({
         display_name: tempName,
@@ -59,7 +63,7 @@ class App extends React.Component {
     catch (err) {
       this.setState({
         errorTitle: 'Request failed',
-        // errorText: err.response.status,
+        errorText: err.response.status,
         display_name: '',
         lat: '',
         lon: '',
@@ -85,6 +89,8 @@ class App extends React.Component {
   }
 
   render() {
+
+    console.log(`current thisState:`, this.state );
 
     let cityDataItems = null;
 
@@ -118,10 +124,11 @@ class App extends React.Component {
         </Row>
         <Row>
           
+          { this.state.wxData.date &&
           <Weather 
             wxDate={this.state.wxData.date} 
             wxDescription={this.state.wxData.description} 
-          />
+          /> }
           
         </Row>
         <Modal
