@@ -32,6 +32,7 @@ class App extends React.Component {
     // setup function-scope variables
     let queryResponse;
     let cityWeather;
+    let cityMovies;
 
     // setup city query specific variables
     let qry = `${this.state.city}`;
@@ -52,6 +53,7 @@ class App extends React.Component {
         lon: '',
         map_url: '',
         wxData: null,
+        movieData: null,
       })
     }
     let center = `${queryResponse.data[0].lat},${queryResponse.data[0].lon}`;
@@ -64,10 +66,11 @@ class App extends React.Component {
 
     //  get weather info
     let wxUrl = `http://localhost:3001/weather?city=${this.state.city}`;
+    console.log('asking server for ', wxUrl);
 
     try {
       cityWeather = await axios.get(wxUrl);
-      console.log(`cityWeather (before setState): ${cityWeather.data[0].date}`);
+      console.log('cityWeather.data[0] (before setState): ',cityWeather.data[0]);
     }
     catch (err) {
       this.setState({
@@ -82,25 +85,36 @@ class App extends React.Component {
       })
     }
 
+    //  movies
+    let moviesUrl = `http://localhost:3001/movies?city=${this.state.city}`;
+    console.log('asking server for ', moviesUrl);
+
+    try {
+      cityMovies = await axios.get(moviesUrl);
+      console.log('cityMovies.data[0] (before setState): ',cityMovies.data[0]);
+    }
+    catch(err) {
+      this.setState({
+        errorTitle: 'Request failed',
+        errorText: err.response.status,
+        showModal: true,
+        display_name: '',
+        city: '',
+        lat: '',
+        lon: '',
+        map_url: '',
+        wxData: null,
+        movieData: null,
+      })
+    }
+
     this.setState({
       display_name: tempName,
       lat: tempLat,
       lon: tempLon,
       map_url: mapurl,
       wxData: cityWeather.data,
-    })
-  }
-  catch(err) {
-    this.setState({
-      errorTitle: 'Request failed',
-      errorText: err.response.status,
-      showModal: true,
-      display_name: '',
-      city: '',
-      lat: '',
-      lon: '',
-      map_url: '',
-      wxData: null,
+      movieData: cityMovies,
     })
   }
 
