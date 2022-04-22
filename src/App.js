@@ -5,6 +5,7 @@ import { Form, Button, Container, Row, Col, Modal } from 'react-bootstrap';
 import MapCard from './MapCard.js';
 import ErrorCard from './ErrorCard.js';
 import Weather from './Weather.js';
+import Movies from './Movies.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
@@ -181,6 +182,11 @@ class App extends React.Component {
           </Col>
           <Col>
             {this.state.wxData && <Weather wxData={this.state.wxData} />}
+          </Col>
+        </Row>
+        <Row className="row-4">
+          <Col>
+            {this.state.movieData && <Movies movieData={this.state.movieData.data} />}
           </Col>
         </Row>
         <Modal
