@@ -92,7 +92,7 @@ class App extends React.Component {
 
     try {
       cityMovies = await axios.get(moviesUrl);
-      console.log('cityMovies.data[0] (before setState): ',cityMovies.data[0]);
+      console.log('cityMovies (before setState): ',cityMovies);
     }
     catch(err) {
       this.setState({
@@ -136,7 +136,7 @@ class App extends React.Component {
   render() {
     //  leave this console log here to verify state at every render
     // console.log(`current thisState:`, this.state);
-
+    console.log('this.state.movieData:', this.state.movieData);
     let cityDataItems = null;
 
     if (this.state.cityData !== null) {
