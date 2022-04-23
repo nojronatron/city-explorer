@@ -15,18 +15,21 @@ Build a React application that uses the Axios library to make user-initiated req
 1. NPM version should be 8 or greater.  
 1. node version 14 `nvm user 14`  
 1. Run `npm -install` to download dependencies.  
-1. ...Do a little dance, drink a little water...  
+1. Execute `npm start` to launch the browser locally.    
 
 ## Architecture
 
-See './design/data-flow-and-functions.pdf'.  
-![Data Flow and Functions](./design/data-flow-and-functions.pdf)  
+![Lab10 Dataflow diagram](./lab10DataFlowDiagram.png)  
+![Lab09 wrrc wireframe](./Lab09%20wrrc%20wireframe.pdf)  
+![Data08 Dataflow diagram](./Lab08DataFlow.pdf)  
+![Lab07 Dataflow diagram](./Lab07%20dataflow%20diagram.pdf)  
 
 ## Change Log
 
 18-Apr-22 1536 PDT - Initial framing and setup, not deployed.  
 19-Apr-22 nnnn PDT - Built-up React front-end and Express back-end.  
 20-Apr-22 2100 PDT - Completed building features per Trello Board requirements.  
+21-Apr-22 2200 PDT - Completed building server, testing, and also refactored routes to use modularized Weather and Movies functions, and added error handling.  
 
 ## Credit and Collaborations
 
