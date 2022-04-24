@@ -30,6 +30,7 @@ Build a React application that uses the Axios library to make user-initiated req
 19-Apr-22 nnnn PDT - Built-up React front-end and Express back-end.  
 20-Apr-22 2100 PDT - Completed building features per Trello Board requirements.  
 21-Apr-22 2200 PDT - Completed building server, testing, and also refactored routes to use modularized Weather and Movies functions, and added error handling.  
+24-Apr-22 1450 PDT - Implemented Lab10 feaures: Cache hit/miss, and fixed a few bugs.
 
 ## Credit and Collaborations
 

@@ -30,33 +30,32 @@ class App extends React.Component {
   }
 
   getSearchResult = async () => {
-    // setup function-scope variables
+    /* setup function-scoped variables */
     let queryResponse;
     let cityWeather;
     let cityMovies;
 
-    // setup city query specific variables
-    let qry = `${this.state.city}`;
+    /* setup city query specific variables */
+    let userInput = `${this.state.city}`;
+    let cityQuery = userInput.split(',')[0];
     let api_key = `${process.env.REACT_APP_LOCATIONIQ_API_KEY}`;
     let base_url = `https://us1.locationiq.com/v1/search.php`;
-    let url = `${base_url}?key=${api_key}&q=${qry}&format=json`;
+    let url = `${base_url}?key=${api_key}&q=${cityQuery}&format=json`;
+
     try {
-      //  get city data
+      /*  AXIOS call city data */
       queryResponse = await axios.get(url);
+      // console.log('axios locationiq response: ', queryResponse);
     }
     catch (err) {
       this.setState({
         errorTitle: 'Request failed',
         errorText: err.response.status,
         showModal: true,
-        display_name: '',
-        lat: '',
-        lon: '',
-        map_url: '',
-        wxData: null,
-        movieData: null,
       })
     }
+
+    /* Concatenate static map path */
     let center = `${queryResponse.data[0].lat},${queryResponse.data[0].lon}`;
     let zoom = 12;
     base_url = `https://maps.locationiq.com/v3/staticmap`;
@@ -65,13 +64,12 @@ class App extends React.Component {
     let tempLat = queryResponse.data[0].lat;
     let tempLon = queryResponse.data[0].lon;
 
-    //  get weather info
-    let wxUrl = `http://localhost:3001/weather?city=${this.state.city}`;
-    console.log('asking server for ', wxUrl);
+    /* AXIOS call weather info */
+    let wxUrl = `http://localhost:3001/weather?lat=${tempLat}&lon=${tempLon}`;
+    // console.log('wxUrl to my api server: ', wxUrl);
 
     try {
       cityWeather = await axios.get(wxUrl);
-      console.log('cityWeather.data[0] (before setState): ',cityWeather.data[0]);
     }
     catch (err) {
       this.setState({
@@ -87,12 +85,12 @@ class App extends React.Component {
     }
 
     //  movies
-    let moviesUrl = `http://localhost:3001/movies?city=${this.state.city}`;
-    console.log('asking server for ', moviesUrl);
+    let moviesUrl = `http://localhost:3001/movies?city=${cityQuery}`;
+    // console.log('asking server for ', moviesUrl);
 
     try {
       cityMovies = await axios.get(moviesUrl);
-      console.log('cityMovies (before setState): ',cityMovies);
+      // console.log('cityMovies (before setState): ',cityMovies);
     }
     catch(err) {
       this.setState({
@@ -136,7 +134,8 @@ class App extends React.Component {
   render() {
     //  leave this console log here to verify state at every render
     // console.log(`current thisState:`, this.state);
-    console.log('this.state.movieData:', this.state.movieData);
+    // console.log('this.state.movieData:', this.state.movieData);
+    
     let cityDataItems = null;
 
     if (this.state.cityData !== null) {
