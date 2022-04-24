@@ -45,7 +45,7 @@ class App extends React.Component {
     try {
       /*  AXIOS call city data */
       queryResponse = await axios.get(url);
-      console.log('axios locationiq response: ', queryResponse);
+      // console.log('axios locationiq response: ', queryResponse);
     }
     catch (err) {
       this.setState({
@@ -66,7 +66,7 @@ class App extends React.Component {
 
     /* AXIOS call weather info */
     let wxUrl = `http://localhost:3001/weather?lat=${tempLat}&lon=${tempLon}`;
-    console.log('wxUrl to my api server: ', wxUrl);
+    // console.log('wxUrl to my api server: ', wxUrl);
 
     try {
       cityWeather = await axios.get(wxUrl);
@@ -86,11 +86,11 @@ class App extends React.Component {
 
     //  movies
     let moviesUrl = `http://localhost:3001/movies?city=${cityQuery}`;
-    console.log('asking server for ', moviesUrl);
+    // console.log('asking server for ', moviesUrl);
 
     try {
       cityMovies = await axios.get(moviesUrl);
-      console.log('cityMovies (before setState): ',cityMovies);
+      // console.log('cityMovies (before setState): ',cityMovies);
     }
     catch(err) {
       this.setState({
@@ -133,7 +133,7 @@ class App extends React.Component {
 
   render() {
     //  leave this console log here to verify state at every render
-    console.log(`current thisState:`, this.state);
+    // console.log(`current thisState:`, this.state);
     // console.log('this.state.movieData:', this.state.movieData);
     
     let cityDataItems = null;
